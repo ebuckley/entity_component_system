@@ -25,6 +25,8 @@ var	UpdateEntities = function ( entities, stage ) {
  */
 var Renders = {};
 var KeyboardMovers = {};
+var Selectable = {};
+var AiMover = {};
 
 /**
  * Subsytem updating, depends on stage for rendering
@@ -34,22 +36,29 @@ var KeyboardMovers = {};
  * @param stage the easeljs drawing object
  */
 var UpdateSubSystem = function( stage, subsystem, entity) {
+	var addTo = function( subsytem, entity, cb) {
+		// body...
+	};
 	var systems = {
 		render: function (entity) {
-			//object needs a position and an image
+			//object needs a position and an sprite
 			if (typeof Renders[entity.name] === 'undefined') {
 				//init render subsystem
-				if (typeof entity.image === 'undefined') {
-					entity.image = '/assets/tmp.png';
+				if (typeof entity.sprite === 'undefined') {
+					entity.sprite = '/assets/tmp.png';
 				}
 				Renders[entity.name] = entity;
-				entity.image = new createjs.Bitmap(entity.image);
-				stage.addChild(entity.image);
+				entity.sprite = new createjs.Bitmap(entity.sprite);
+				stage.addChild(entity.sprite);
 			}
 			return entity;
 		},
-		keyboardMover: function(entity) {
-			//object needs a position and an image
+		selectable: function (entity) {
+		},
+		aiMover: function(entity) {
+		},
+		keyboardMover: function (entity) {
+			//object needs a position and an sprite
 			if (typeof KeyboardMovers[entity.name] === 'undefined') {
 				//init keyboard subsystem in this block
 
@@ -62,19 +71,19 @@ var UpdateSubSystem = function( stage, subsystem, entity) {
 				//setup individual keypressed events
 				Mousetrap.bind('w', function() {
 					entity.keyPressed('w');
-					entity.image.y -= 10;
+					entity.sprite.y -= 10;
 				}, 'keydown');
 				Mousetrap.bind('a', function() {
 					entity.keyPressed('a');
-					entity.image.x -= 10;
+					entity.sprite.x -= 10;
 				}, 'keydown');
 				Mousetrap.bind('s', function() {
 					entity.keyPressed('s');
-					entity.image.y += 10;
+					entity.sprite.y += 10;
 				}, 'keydown');
 				Mousetrap.bind('d', function() {
 					entity.keyPressed('d');
-					entity.image.x += 10;
+					entity.sprite.x += 10;
 				}, 'keydown');
 
 			}

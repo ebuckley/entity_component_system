@@ -10,7 +10,21 @@
         "x": 105,
         "y": 200
       },
-      "image": "/assets/player.png"
+      "sprite": "/assets/player.png"
+    }
+
+    {
+      "name": "AI",
+      "subs": [
+        "render",
+        "aiMover",
+        "selectable"
+      ],
+      "position": {
+        "x": 105,
+        "y": 200
+      },
+      "sprite": "/assets/player.png"
     }
   ]
 }
