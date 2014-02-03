@@ -24,7 +24,8 @@ var Game = function ( canvas_element ) {
 	 * Global update 
 	 */
 	var update = function () {
-		UpdateEntities( entities );
+		//pass the stage to update entitites so render subsystem can draw
+		UpdateEntities( entities, stage);
 		stage.update();
 	};
 
@@ -33,32 +34,15 @@ var Game = function ( canvas_element ) {
 
 		stage = new createjs.Stage(canvas_element);
 		/*
+		 * TOOD this could be moved out of here into network code
 		 * get connection to server
 		 */
 		var socket = io.connect();
-
 		socket.on('game:entities', function(data) {
 			console.log('game:entities');
 			entities = data.entities;
-			// instantiate the new objects
-			_(entities).map(function( entity ) {
-				return GameObject(entity);
-			});
 		});
 
-
-		/*
-		//load a spritesheet
-		var spritesheet = new createjs.SpriteSheet(City);
-		var sprite = new createjs.Sprite(spritesheet);
-		console.log(sprite);
-		sprite.x = 100;
-		sprite.y = 100;
-		sprite.width = 1000;
-		stage.addChild(sprite);
-		createjs.Ticker.setFPS(60);
-        createjs.Ticker.addEventListener('tick', stage);
-        */
 		setInterval(function() {
 			update();
 		}, 1000/10);
