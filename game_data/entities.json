@@ -1,0 +1,16 @@
+{
+  "objects": [
+    {
+      "name": "ersin",
+      "subs": [
+        "render",
+        "keyboardMover"
+      ],
+      "position": {
+        "x": 105,
+        "y": 200
+      },
+      "image": "/assets/player.png"
+    }
+  ]
+}

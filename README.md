@@ -1,0 +1,3 @@
+Rationale
+=
+What makes a game fun? Really it is an insolvable problem. All i know is that I don't know what makes a good game. Iteration and testing could move me towards the right direction, I could just make a engine which I will be super productive in then this will be how I preform fast iterations. In addition to faster iteration for my own designs I can collaborate with better designers to learn the art through osmosis.
