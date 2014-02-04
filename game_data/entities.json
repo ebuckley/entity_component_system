@@ -6,13 +6,8 @@
         "render",
         "keyboardMover"
       ],
-      "position": {
-        "x": 105,
-        "y": 200
-      },
-      "sprite": "/assets/player.png"
-    }
-
+      "sprite": "badguy"
+    },
     {
       "name": "AI",
       "subs": [
@@ -20,11 +15,7 @@
         "aiMover",
         "selectable"
       ],
-      "position": {
-        "x": 105,
-        "y": 200
-      },
-      "sprite": "/assets/player.png"
+      "sprite": "player"
     }
   ]
 }

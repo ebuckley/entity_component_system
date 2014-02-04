@@ -1,0 +1,16 @@
+{
+  "objects": [
+  	{
+  		"id": "player",
+  		"src": "/assets/player.png"
+  	},
+  	{
+  		"id": "backgrounds",
+  		"src": "/assets/backgrounds.png"
+  	},
+    {
+      "id": "badguy",
+      "src": "/assets/badguy.png"
+    }
+  ]
+}

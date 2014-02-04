@@ -8,7 +8,7 @@ var City = {
 };
 var Green = {
 	framerate: 20,
-	images: ['/assets/backrounds.png'],
+	images: ['/assets/backgrounds.png'],
 	frames: [
 		//x,y,w,h,index,regX,regY
 		[0,231,231,63],
@@ -18,6 +18,7 @@ var Game = function ( canvas_element ) {
 
 	//easeljs stage
 	var stage;
+	var textures;
 	var entities;
 
 	/**
@@ -25,7 +26,7 @@ var Game = function ( canvas_element ) {
 	 */
 	var update = function () {
 		//pass the stage to update entitites so render subsystem can draw
-		UpdateEntities( entities, stage);
+		UpdateEntities( entities, stage, textures);
 		stage.update();
 	};
 
@@ -33,19 +34,25 @@ var Game = function ( canvas_element ) {
 		console.log('Game engine started!');
 
 		stage = new createjs.Stage(canvas_element);
-		/*
-		 * TOOD this could be moved out of here into network code
-		 * get connection to server
-		 */
-		var socket = io.connect();
-		socket.on('game:entities', function(data) {
-			console.log('game:entities');
-			entities = data.entities;
-		});
 
-		setInterval(function() {
-			update();
-		}, 1000/10);
+		// load the game
+		var socket = io.connect();
+		socket.on('game:load', function(data) {
+			console.log('game:load');
+			entities = data.entities.entities;
+			// load textures
+			textures = new createjs.LoadQueue();
+			textures.on('complete', loadingHasFinished);
+			textures.loadManifest(data.textures.textures);
+		});
+		
+		var loadingHasFinished = function () {
+			console.log('image loading has completed!');
+			setInterval(function() {
+				update();
+			}, 1000/10);
+		};
 	};
+
 	constructor();
 };
