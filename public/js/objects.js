@@ -37,7 +37,11 @@ var	UpdateEntities = function ( entities, stage, textures ) {
 	 */
 	var UpdateSubSystem = function( subsystem, entity) {
 
-		
+		//Graphics for the selection of this object;
+		var g = new createjs.Graphics();
+		g.setStrokeStyle(1);
+		g.beginStroke(createjs.Graphics.getRGB(255,0,0));
+		g.drawRect(0, 0, 64, 64);	
 
 		var init = function(sysName, entity, cb) {
 			if (typeof sysName[entity.name] === 'undefined') {
@@ -66,7 +70,10 @@ var	UpdateEntities = function ( entities, stage, textures ) {
 					init(Selectables, 'selectable', function () {
 						// need to wait on getting the asset loaded here
 						entity.image.on('mousedown', function (evt) {
-							console.log(evt);
+							entity.selection = new createjs.Shape(g);
+							entity.selection.x = entity.image.x;
+							entity.selection.y = entity.image.y;
+							stage.addChild(entity.selection);
 						});
 					});
 				} else {
