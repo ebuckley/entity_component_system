@@ -65,17 +65,26 @@ var	UpdateEntities = function ( entities, stage, textures ) {
 			},
 			selectable: function (entity) {
 				if (_.contains(entity.subs, 'render')) {
-
 					//initialize the entity on the selectables subsytem list
-					init(Selectables, 'selectable', function () {
+					if (typeof Selectables[entity.name] === 'undefined') {
+						console.log('only once..');
 						// need to wait on getting the asset loaded here
-						entity.image.on('mousedown', function (evt) {
-							entity.selection = new createjs.Shape(g);
-							entity.selection.x = entity.image.x;
-							entity.selection.y = entity.image.y;
-							stage.addChild(entity.selection);
+						entity.image.on('click', function (evt) {
+							console.log('click');
+							if (typeof entity.selection === 'undefined') {
+								console.log("toggle on");
+								entity.selection = new createjs.Shape(g);
+								entity.selection.x = entity.image.x;
+								entity.selection.y = entity.image.y;
+								stage.addChild(entity.selection);
+							} else {
+								console.log("toggle off");
+								stage.removeChild(entity.selection);
+								delete entity['selection'];
+							}
 						});
-					});
+						Selectables[entity.name] = entity;
+					}
 				} else {
 					throw new Error('a selectable component needs to be render aswell');
 				}
