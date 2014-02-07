@@ -11,7 +11,8 @@ Each entity is defined in game_data/objects.json. The subscriptions is the list 
 
 Tests
 =
-I did do some unit tests of DataManager, I really do need to write more tests at some stage though
+I did do some unit tests of DataManager, I really do need to write more tests at some stage...
+
 	npm install -dev
 	node test
 	
