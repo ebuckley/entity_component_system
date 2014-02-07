@@ -41,14 +41,9 @@ var	UpdateEntities = function ( entities, stage, textures ) {
 		var g = new createjs.Graphics();
 		g.setStrokeStyle(1);
 		g.beginStroke(createjs.Graphics.getRGB(255,0,0));
-		g.drawRect(0, 0, 64, 64);	
+		g.drawRect(0, 0, 64, 64);
 
-		var init = function(sysName, entity, cb) {
-			if (typeof sysName[entity.name] === 'undefined') {
-				return cb();
-			}
-			return entity;
-		};
+		//TODO each system needs an init action as well as an update action
 		var systems = {
 			render: function (entity) {
 				//object needs a position and an sprite
@@ -67,18 +62,15 @@ var	UpdateEntities = function ( entities, stage, textures ) {
 				if (_.contains(entity.subs, 'render')) {
 					//initialize the entity on the selectables subsytem list
 					if (typeof Selectables[entity.name] === 'undefined') {
-						console.log('only once..');
 						// need to wait on getting the asset loaded here
-						entity.image.on('click', function (evt) {
+						entity.image.on('click', function () {
 							console.log(entity);
 							if (typeof entity.selection === 'undefined') {
-								console.log("toggle on");
 								entity.selection = new createjs.Shape(g);
 								entity.selection.x = entity.image.x;
 								entity.selection.y = entity.image.y;
 								stage.addChild(entity.selection);
 							} else {
-								console.log("toggle off");
 								stage.removeChild(entity.selection);
 								delete entity['selection'];
 							}

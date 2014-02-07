@@ -1,3 +1,23 @@
-Rationale
+Getting Started
 =
-What makes a game fun? Really it is an insolvable problem. All i know is that I don't know what makes a good game. Iteration and testing could move me towards the right direction, I could just make a engine which I will be super productive in then this will be how I preform fast iterations. In addition to faster iteration for my own designs I can collaborate with better designers to learn the art through osmosis.
+	npm install
+	node server
+
+You should be able to see the client at localhost:3030
+
+To get familiarized take a look at public/js/application.js and public/js/objects.js.
+Each entity is defined in game_data/objects.json. The subscriptions is the list of entity.subs, they are implemented in objects.js in the Subsystem(entity) function.
+
+
+Tests
+=
+I did do some unit tests of DataManager, I really do need to write more tests at some stage though
+	npm install -dev
+	node test
+	
+Goal
+=
+* ECS architecture
+* Network Driven
+* Easy for designers to import assets
+* Easy to design levels and behaviours from an editor
