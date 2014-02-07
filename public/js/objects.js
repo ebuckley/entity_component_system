@@ -70,7 +70,7 @@ var	UpdateEntities = function ( entities, stage, textures ) {
 						console.log('only once..');
 						// need to wait on getting the asset loaded here
 						entity.image.on('click', function (evt) {
-							console.log('click');
+							console.log(entity);
 							if (typeof entity.selection === 'undefined') {
 								console.log("toggle on");
 								entity.selection = new createjs.Shape(g);

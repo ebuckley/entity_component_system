@@ -1,19 +1,4 @@
-
-var City = {
-	images: ['assets/backgrounds.png'],
-	frames: [
-		//x,y,w,h,index,regX,regY
-		[0,0,231, 63],
-	]
-};
-var Green = {
-	framerate: 20,
-	images: ['/assets/backgrounds.png'],
-	frames: [
-		//x,y,w,h,index,regX,regY
-		[0,231,231,63],
-	]
-};
+// entry point for game, just pass it a canvas dom element
 var Game = function ( canvas_element ) {
 
 	//easeljs stage
